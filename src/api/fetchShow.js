@@ -21,6 +21,8 @@ const formatSeasons = (allEpisodes) => {
   return seasons;
 };
 
+//note: The index in the seasons array is determined by subtracting 1 from the season number because JavaScript arrays are zero-indexed (i.e. the first element of an array has an index of 0).
+
 
 const fetchShow = () => {
   return axios
