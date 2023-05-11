@@ -4,6 +4,8 @@ import Loading from './Loading';
 
 const Show = (props) => {
   const { handleSelect, selectedSeason, show } = props;
+  console.log('show:', show)
+  console.log('selectedSeason:', selectedSeason)
   // console.log('selectedSeason:', selectedSeason)
   // console.log('show:', show);
 
@@ -20,16 +22,17 @@ const Show = (props) => {
         onChange={handleSelect} 
         name="seasons" 
         id="seasons"
+        data-testid="season-select"
       >
         <option value="none"></option>
         {
           show.seasons.map(season => {
             return (
             <option 
-              data-testid="season-option" 
-              key={season.id} 
-              value={season.id}> 
-                {season.name}
+            data-testid="season-option" 
+            key={season.id} 
+            value={season.id}> 
+              {season.name}
             </option>);
           })
         }
