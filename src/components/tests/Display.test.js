@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-// import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
 
 import Display from './../Display';
 
@@ -60,7 +60,9 @@ test('renders season options matching fetch return when button is clicked', asyn
     await waitFor(()=> {
         const seasonOptions = screen.queryAllByTestId('season-option');
         // console.log('seasonOptions:', seasonOptions);
-        expect(seasonOptions.toHaveLength(2));
+        const exp = expect(seasonOptions);
+
+        exp.toHaveLength(2);
     })
 
  });
@@ -72,12 +74,12 @@ test('renders show season options matching your data when the button is clicked'
     mockFetchShow.mockResolvedValueOnce(exampleDisplayData);
     const displayfunc = jest.fn();
 
-    render(<Display displayfunc={displayfunc}/>);
+    render(<Display displayFunc={displayfunc}/>);
     const button = screen.getByRole('button');
-    userEvent.click(button);
+    await userEvent.click(button);
 
     //new stuff for function to be called now
     await waitFor(()=>{
         expect(displayfunc).toHaveBeenCalled();
-    })
+    });
 });
